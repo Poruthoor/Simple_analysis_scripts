@@ -131,4 +131,4 @@ dmypy.json
 # Vi cruft
 *.swp
 *.sw*
-*.un
+*.un*
