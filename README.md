@@ -12,7 +12,7 @@ Some scripts require LOOS to implement, and some do not. Scripts that require LO
 1. `csv2pdb.py` : Replaces the B-factor column in input .pdb with custom value in your .csv file. 🌟  
 2. `csv2heatmap.py`: Creates difference heatmap from two input .csv files
 
-### 1. csv2pdb.py
+### 1. csv2pdb.py 🌟
 
 ```
     Description :
