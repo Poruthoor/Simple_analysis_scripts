@@ -42,11 +42,11 @@
 
     Usage :
 
-       python3 csv2heatmap.py prefix datafile_1 datafile_2 shiftByOne=True
+       python3 csv2heatmap.py prefix datafile_1 datafile_2 --shift=True
 
     Example :
 
-       python3 csv2heatmap.py heatmap 4Y1M.csv 4Y1J.csv shiftByOne=True
+       python3 csv2heatmap.py heatmap 4Y1M.csv 4Y1J.csv --shift=True
 
     Author :
 
