@@ -78,13 +78,16 @@ Description :
                               extentsion needed)
             datafile_1      : Your SPACE separated CSV file (with file extension)
             datafile_2      : Your SPACE separated CSV file (with file extension)
+            --shift         : [OPTIONAL] correction to make python array and PDB
+                               are one indexed, you might not need to turn this
+                               off. (default = True)
 
 
     Usage :
 
-       python3 csv2heatmap.py prefix datafile_1 datafile_2
+       python3 csv2heatmap.py prefix datafile_1 datafile_2 --shift=[BOOL,default=True]
 
     Example :
 
-       python3 csv2heatmap.py heatmap 4Y1M.csv 4Y1J.csv
+       python3 csv2heatmap.py heatmap 4Y1M.csv 4Y1J.csv --shift=True
 ```
