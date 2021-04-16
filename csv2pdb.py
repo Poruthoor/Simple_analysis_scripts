@@ -1,15 +1,15 @@
 #! /usr/bin/env python3
 
 '''
-    Description : 
+    Description :
 
-        This script takes a two column csv file where first column corresponds to
-        RESID and the second column corresonds to the respective value. This value
-        can be from whatever sources, example SHAPE data. The other input file is
-        the PDB file whose B-factor coulmn will be replaced by the respective
-        values of second column of the csv file.
+        This script takes a two-column .csv file where the first column corresponds to
+        RESID and the second column corresponds to the respective value. This value
+        can be from whatever sources, for example, SHAPE data. The other input file is
+        the PDB file, whose B-factor column will be replaced by the respective values
+        of the second column of the .csv file.
 
-        Input arguments :  (Checkout the example given below)
+        Input arguments :  (Check out the example given below)
 
             prefix          : The filename for your output PDB file (No file
                               extentsion needed)

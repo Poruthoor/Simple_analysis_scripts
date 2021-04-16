@@ -1,17 +1,17 @@
 #! /usr/bin/env python3
 
 '''
-    Description : 
+Description :
 
-        This script takes 2 csv files as input and create heatmaps for each and
-        create a difference heatmap. 
+        This script takes two .csv files as input and creates heatmaps for each and
+        create a difference heatmap.
 
-        It is assumed that each csv files are formatted for the 2D surface plot.
-        That is, the rows and coulmns coresponds to what you need to see in plot.
+        It is assumed that each .csv file is formatted for the 2D surface plot.
+        That is, the rows and columns correspond to what you need to see in the plot.
         More about this in PITFALLS.
 
         This script does not do any preprocessing other than making the shape of
-        both csv files equal with additional rows/columns filled with ZEROS.
+        both .csv files equal with additional rows/columns filled with ZEROS.
         This makes the difference plot meaningful.
 
         NOTE :
@@ -19,30 +19,29 @@
             The difference is taken as follows:
                 difference = datafile_1 - datafile_2
 
-        Thus, imput your csv files accordingly
+        Thus, input your .csv files accordingly.
 
         PITFALLS:
 
-        One gottcha with using imshow() is that your csv file determines
-        where your origin of the plot lies. Here it is assumed that (1,1) point
-        in the plot is at the top left of the plot and the respective data comes
-        from row = 1, col =1. If this is not the case for you, you might need to
-        tweak this code a bit
+        One gotcha using imshow() is that your .csv file determines where your plot's
+        origin lies. Here it is assumed that (1,1) point in the plot is at the top
+        left of the plot and the respective data comes from row = 1, col =1. If this
+        is not the case for you, you might need to tweak this code a bit
 
-        Input arguments :  (Checkout the example given below)
+        Input arguments :  (Check out the example given below)
 
             prefix          : The filename for your output PDB file (No file
                               extentsion needed)
             datafile_1      : Your SPACE separated CSV file (with file extension)
             datafile_2      : Your SPACE separated CSV file (with file extension)
-            shiftByOne      : If your csv is 0 indexed and your PDB is one
-                              indexed, you might need to turn this on.
-                              (default = True)
+            --shift         : [OPTIONAL] correction to make python array and PDB
+                               are one indexed, you might not need to turn this
+                               off. (default = True)
 
 
     Usage :
 
-       python3 csv2heatmap.py prefix datafile_1 datafile_2 --shift=True
+       python3 csv2heatmap.py prefix datafile_1 datafile_2 --shift=[BOOL,default=True]
 
     Example :
 
