@@ -35,15 +35,18 @@
                               extentsion needed)
             datafile_1      : Your SPACE separated CSV file (with file extension)
             datafile_2      : Your SPACE separated CSV file (with file extension)
+            shiftByOne      : If your csv is 0 indexed and your PDB is one
+                              indexed, you might need to turn this on.
+                              (default = True)
 
 
     Usage :
 
-       python3 csv2heatmap.py prefix datafile_1 datafile_2
+       python3 csv2heatmap.py prefix datafile_1 datafile_2 shiftByOne=True
 
     Example :
 
-       python3 csv2heatmap.py heatmap 4Y1M.csv 4Y1J.csv
+       python3 csv2heatmap.py heatmap 4Y1M.csv 4Y1J.csv shiftByOne=True
 
     Author :
 
@@ -60,8 +63,9 @@ import matplotlib.colors as colors
 # Parse command line
 parser = argparse.ArgumentParser()
 parser.add_argument('prefix', help='Handle for output files.')
-parser.add_argument('datafile_1', help='csv file A')
-parser.add_argument('datafile_2', help='csv file B')
+parser.add_argument('datafile_1', help='csv file 1')
+parser.add_argument('datafile_2', help='csv file 2')
+parser.add_argument('--shift', dest='shiftByOne', default=True, help='shift by one (default:True)')
 args = parser.parse_args()
 
 # Read in data file
@@ -85,11 +89,21 @@ if data_1.shape[1] != data_2.shape[1]:
 
 #Formatting the data
 
-F_data_1 = np.zeros((max_rows,max_cols))
-F_data_2 = np.zeros((max_rows,max_cols))
+if args.shiftByOne :
 
-F_data_1[:data_1.shape[0],:data_1.shape[1]] = data_1
-F_data_2[:data_2.shape[0],:data_2.shape[1]] = data_2
+    F_data_1 = np.zeros((max_rows+1,max_cols+1))
+    F_data_2 = np.zeros((max_rows+1,max_cols+1))
+
+    F_data_1[1:data_1.shape[0]+1,1:data_1.shape[1]+1] = data_1
+    F_data_2[1:data_2.shape[0]+1,1:data_2.shape[1]+1] = data_2
+
+else :
+
+    F_data_1 = np.zeros((max_rows,max_cols))
+    F_data_2 = np.zeros((max_rows,max_cols))
+
+    F_data_1[:data_1.shape[0],:data_1.shape[1]] = data_1
+    F_data_2[:data_2.shape[0],:data_2.shape[1]] = data_2
 
 print ("Creating differnce matrix. NOTE : Diff = File 1 - File 2\n")
 Diff_data =  F_data_1 - F_data_2
@@ -105,9 +119,13 @@ for data in (F_data_1,F_data_2,Diff_data):
 
     fig, ax0 = plt.subplots()
     divnorm = colors.TwoSlopeNorm(vcenter=0.)
-    im0 = plt.imshow(data,interpolation='nearest', cmap='seismic', norm=divnorm)
+    im0 = plt.imshow(data,interpolation='none', cmap='seismic', norm=divnorm)
 
     cbar = fig.colorbar(im0,ax=ax0)
+
+    if args.shiftByOne:
+        ax0.set_xlim(left=1)
+        ax0.set_ylim(top=1)
 
     filename = str(args.prefix) + "_" + file_id[file_id_itr] +".png"
     file_id_itr += 1
